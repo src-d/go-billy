@@ -1,4 +1,6 @@
 # go-billy
+[![Build
+Status](https://travis-ci.org/src-d/go-billy.svg?branch=master)](https://travis-ci.org/src-d/go-billy) [![GoDoc](https://godoc.org/github.com/src-d/go-billy?status.svg)](https://godoc.org/github.com/src-d/go-billy)
 
 An interface to abstract several storages.
 
