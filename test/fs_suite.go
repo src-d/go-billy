@@ -402,7 +402,7 @@ func (s *FilesystemSuite) TestRemove(c *C) {
 }
 
 func (s *FilesystemSuite) TestRemoveNonExisting(c *C) {
-	c.Assert(s.Fs.Remove("NON-EXISTING"), NotNil)
+	c.Assert(os.IsNotExist(s.Fs.Remove("NON-EXISTING")), Equals, true)
 }
 
 func (s *FilesystemSuite) TestRemoveTempFile(c *C) {
