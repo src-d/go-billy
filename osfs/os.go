@@ -168,6 +168,19 @@ func (fs *OS) RemoveAll(path string) error {
 	return os.RemoveAll(fullpath)
 }
 
+// Symlink creates name as a symbolic link to oldname.
+func (fs *OS) Symlink(oldname, newname string) error {
+	fullpath := fs.Join(fs.base, newname)
+	// oldname is not joined to the base to allow relative symlink targets
+	return os.Symlink(oldname, fullpath)
+}
+
+// Readlink returns the destination of the named symbolic link.
+func (fs *OS) Readlink(name string) (string, error) {
+	fullpath := fs.Join(fs.base, name)
+	return os.Readlink(fullpath)
+}
+
 // osFile represents a file in the os filesystem
 type osFile struct {
 	billy.BaseFile
