@@ -989,10 +989,7 @@ func (s *FilesystemSuite) TestSymlinkOpenWithRelativePath(c *C) {
 		c.Skip("file system does not support symlinking")
 	}
 
-	err := fs.MkdirAll("dir", 0755)
-	c.Assert(err, IsNil)
-
-	err = WriteFile(fs, "dir/file", []byte("foo"), 0644)
+	err := WriteFile(fs, "dir/file", []byte("foo"), 0644)
 	c.Assert(err, IsNil)
 
 	err = fs.Symlink("file", "dir/link")
@@ -1013,10 +1010,7 @@ func (s *FilesystemSuite) TestSymlinkOpenWithAbsolutePath(c *C) {
 		c.Skip("file system does not support symlinking")
 	}
 
-	err := fs.MkdirAll("dir", 0755)
-	c.Assert(err, IsNil)
-
-	err = WriteFile(fs, "dir/file", []byte("foo"), 0644)
+	err := WriteFile(fs, "dir/file", []byte("foo"), 0644)
 	c.Assert(err, IsNil)
 
 	err = fs.Symlink("/dir/file", "dir/link")
@@ -1037,10 +1031,7 @@ func (s *FilesystemSuite) TestSymlinkReadDir(c *C) {
 		c.Skip("file system does not support symlinking")
 	}
 
-	err := fs.MkdirAll("dir", 0755)
-	c.Assert(err, IsNil)
-
-	err = WriteFile(fs, "dir/file", []byte("foo"), 0644)
+	err := WriteFile(fs, "dir/file", []byte("foo"), 0644)
 	c.Assert(err, IsNil)
 
 	err = fs.Symlink("dir", "link")
@@ -1093,10 +1084,7 @@ func (s *FilesystemSuite) TestReadlinkWithRelativePath(c *C) {
 		c.Skip("file system does not support symlinking")
 	}
 
-	err := fs.MkdirAll("dir", 0755)
-	c.Assert(err, IsNil)
-
-	err = WriteFile(fs, "dir/file", nil, 0644)
+	err := WriteFile(fs, "dir/file", nil, 0644)
 	c.Assert(err, IsNil)
 
 	err = fs.Symlink("file", "dir/link")
@@ -1113,10 +1101,7 @@ func (s *FilesystemSuite) TestReadlinkWithAbsolutePath(c *C) {
 		c.Skip("file system does not support symlinking")
 	}
 
-	err := fs.MkdirAll("dir", 0755)
-	c.Assert(err, IsNil)
-
-	err = WriteFile(fs, "dir/file", nil, 0644)
+	err := WriteFile(fs, "dir/file", nil, 0644)
 	c.Assert(err, IsNil)
 
 	err = fs.Symlink("/dir/file", "dir/link")

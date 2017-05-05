@@ -1,4 +1,4 @@
-// Package os provides a billy filesystem for the OS.
+// Package osfs provides a billy filesystem for the OS.
 package osfs // import "gopkg.in/src-d/go-billy.v2/osfs"
 
 import (
@@ -175,6 +175,11 @@ func (fs *OS) Symlink(oldname, newname string) error {
 		oldname = fs.Join(fs.base, oldname)
 	}
 	newname = fs.Join(fs.base, newname)
+
+	if err := fs.createDir(newname); err != nil {
+		return err
+	}
+
 	return os.Symlink(oldname, newname)
 }
 
