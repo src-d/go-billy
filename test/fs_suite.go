@@ -920,14 +920,8 @@ func (s *FilesystemSuite) TestWriteFile(c *C) {
 	c.Assert(f.Close(), IsNil)
 }
 
-type symlinker interface {
-	Filesystem
-	Symlink(oldname, newname string) error
-	Readlink(name string) (string, error)
-}
-
 func (s *FilesystemSuite) TestSymlink(c *C) {
-	fs, ok := s.FS.(symlinker)
+	fs, ok := s.FS.(Symlinker)
 	if !ok {
 		c.Skip("file system does not support symlinking")
 	}
@@ -945,7 +939,7 @@ func (s *FilesystemSuite) TestSymlink(c *C) {
 }
 
 func (s *FilesystemSuite) TestSymlinkToDir(c *C) {
-	fs, ok := s.FS.(symlinker)
+	fs, ok := s.FS.(Symlinker)
 	if !ok {
 		c.Skip("file system does not support symlinking")
 	}
@@ -964,7 +958,7 @@ func (s *FilesystemSuite) TestSymlinkToDir(c *C) {
 }
 
 func (s *FilesystemSuite) TestSymlinkWithNonExistentOldname(c *C) {
-	fs, ok := s.FS.(symlinker)
+	fs, ok := s.FS.(Symlinker)
 	if !ok {
 		c.Skip("file system does not support symlinking")
 	}
@@ -977,7 +971,7 @@ func (s *FilesystemSuite) TestSymlinkWithNonExistentOldname(c *C) {
 }
 
 func (s *FilesystemSuite) TestSymlinkWithExistingNewname(c *C) {
-	fs, ok := s.FS.(symlinker)
+	fs, ok := s.FS.(Symlinker)
 	if !ok {
 		c.Skip("file system does not support symlinking")
 	}
@@ -990,7 +984,7 @@ func (s *FilesystemSuite) TestSymlinkWithExistingNewname(c *C) {
 }
 
 func (s *FilesystemSuite) TestSymlinkOpenWithRelativePath(c *C) {
-	fs, ok := s.FS.(symlinker)
+	fs, ok := s.FS.(Symlinker)
 	if !ok {
 		c.Skip("file system does not support symlinking")
 	}
@@ -1014,7 +1008,7 @@ func (s *FilesystemSuite) TestSymlinkOpenWithRelativePath(c *C) {
 }
 
 func (s *FilesystemSuite) TestSymlinkOpenWithAbsolutePath(c *C) {
-	fs, ok := s.FS.(symlinker)
+	fs, ok := s.FS.(Symlinker)
 	if !ok {
 		c.Skip("file system does not support symlinking")
 	}
@@ -1038,7 +1032,7 @@ func (s *FilesystemSuite) TestSymlinkOpenWithAbsolutePath(c *C) {
 }
 
 func (s *FilesystemSuite) TestSymlinkReadDir(c *C) {
-	fs, ok := s.FS.(symlinker)
+	fs, ok := s.FS.(Symlinker)
 	if !ok {
 		c.Skip("file system does not support symlinking")
 	}
@@ -1062,7 +1056,7 @@ func (s *FilesystemSuite) TestSymlinkReadDir(c *C) {
 }
 
 func (s *FilesystemSuite) TestSymlinkRename(c *C) {
-	fs, ok := s.FS.(symlinker)
+	fs, ok := s.FS.(Symlinker)
 	if !ok {
 		c.Skip("file system does not support symlinking")
 	}
@@ -1078,7 +1072,7 @@ func (s *FilesystemSuite) TestSymlinkRename(c *C) {
 }
 
 func (s *FilesystemSuite) TestSymlinkRemove(c *C) {
-	fs, ok := s.FS.(symlinker)
+	fs, ok := s.FS.(Symlinker)
 	if !ok {
 		c.Skip("file system does not support symlinking")
 	}
@@ -1094,7 +1088,7 @@ func (s *FilesystemSuite) TestSymlinkRemove(c *C) {
 }
 
 func (s *FilesystemSuite) TestReadlinkWithRelativePath(c *C) {
-	fs, ok := s.FS.(symlinker)
+	fs, ok := s.FS.(Symlinker)
 	if !ok {
 		c.Skip("file system does not support symlinking")
 	}
@@ -1114,7 +1108,7 @@ func (s *FilesystemSuite) TestReadlinkWithRelativePath(c *C) {
 }
 
 func (s *FilesystemSuite) TestReadlinkWithAbsolutePath(c *C) {
-	fs, ok := s.FS.(symlinker)
+	fs, ok := s.FS.(Symlinker)
 	if !ok {
 		c.Skip("file system does not support symlinking")
 	}
@@ -1134,7 +1128,7 @@ func (s *FilesystemSuite) TestReadlinkWithAbsolutePath(c *C) {
 }
 
 func (s *FilesystemSuite) TestReadlinkWithNonExistentOldname(c *C) {
-	fs, ok := s.FS.(symlinker)
+	fs, ok := s.FS.(Symlinker)
 	if !ok {
 		c.Skip("file system does not support symlinking")
 	}
@@ -1148,7 +1142,7 @@ func (s *FilesystemSuite) TestReadlinkWithNonExistentOldname(c *C) {
 }
 
 func (s *FilesystemSuite) TestReadlinkWithNonExistentLink(c *C) {
-	fs, ok := s.FS.(symlinker)
+	fs, ok := s.FS.(Symlinker)
 	if !ok {
 		c.Skip("file system does not support symlinking")
 	}

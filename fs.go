@@ -42,6 +42,13 @@ type Filesystem interface {
 	Base() string
 }
 
+// Symlinker is a Filesystem with support for creating symlinks.
+type Symlinker interface {
+	Filesystem
+	Symlink(oldname, newname string) error
+	Readlink(name string) (string, error)
+}
+
 // File implements io.Closer, io.Reader, io.Seeker, and io.Writer>
 // Provides method to obtain the file name and the state of the file (open or closed).
 type File interface {
