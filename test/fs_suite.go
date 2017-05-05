@@ -1135,3 +1135,16 @@ func (s *FilesystemSuite) TestReadlinkWithNonExistentLink(c *C) {
 	_, err := fs.Readlink("link")
 	c.Assert(os.IsNotExist(err), Equals, true)
 }
+
+func (s *FilesystemSuite) TestReadlinkWithRegularFile(c *C) {
+	fs, ok := s.FS.(Symlinker)
+	if !ok {
+		c.Skip("file system does not support symlinking")
+	}
+
+	err := WriteFile(fs, "file", nil, 0644)
+	c.Assert(err, IsNil)
+
+	_, err = fs.Readlink("file")
+	c.Assert(err, ErrorMatches, "readlink .+/file: invalid argument")
+}
