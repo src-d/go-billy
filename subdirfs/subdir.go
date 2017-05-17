@@ -119,7 +119,7 @@ func (s *subdirFs) Base() string {
 	return s.base
 }
 
-// Symlink creates name as a symbolic link to oldname.
+// Symlink creates newname as a symbolic link to oldname.
 // All parent directories are created.
 func (s *subdirFs) Symlink(oldname, newname string) error {
 	fs, ok := s.underlying.(billy.Symlinker)

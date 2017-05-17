@@ -936,6 +936,7 @@ func (s *FilesystemSuite) TestSymlink(c *C) {
 	c.Assert(err, IsNil)
 	c.Assert(fi.Name(), Equals, "link")
 	c.Assert(fi.Mode()&os.ModeSymlink, Not(Equals), 0)
+	c.Assert(fi.Size(), Equals, int64(0))
 }
 
 func (s *FilesystemSuite) TestSymlinkToDir(c *C) {
@@ -980,7 +981,7 @@ func (s *FilesystemSuite) TestSymlinkWithExistingNewname(c *C) {
 	c.Assert(err, IsNil)
 
 	err = fs.Symlink("file", "link")
-	c.Assert(err, ErrorMatches, "symlink file .+/link: file exists")
+	c.Assert(err, Not(IsNil))
 }
 
 func (s *FilesystemSuite) TestSymlinkOpenWithRelativePath(c *C) {
@@ -1146,5 +1147,5 @@ func (s *FilesystemSuite) TestReadlinkWithRegularFile(c *C) {
 	c.Assert(err, IsNil)
 
 	_, err = fs.Readlink("file")
-	c.Assert(err, ErrorMatches, "readlink .+/file: invalid argument")
+	c.Assert(err, Not(IsNil))
 }

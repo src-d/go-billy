@@ -168,7 +168,7 @@ func (fs *OS) RemoveAll(path string) error {
 	return os.RemoveAll(fullpath)
 }
 
-// Symlink creates name as a symbolic link to oldname.
+// Symlink creates newname as a symbolic link to oldname.
 // All parent directories are created.
 func (fs *OS) Symlink(oldname, newname string) error {
 	if filepath.IsAbs(oldname) {
