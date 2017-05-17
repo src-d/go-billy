@@ -1110,7 +1110,7 @@ func (s *FilesystemSuite) TestReadlinkWithAbsolutePath(c *C) {
 
 	oldname, err := fs.Readlink("dir/link")
 	c.Assert(err, IsNil)
-	c.Assert(oldname, Equals, "/dir/file")
+	c.Assert(oldname, Equals, expectedSymlinkTarget)
 }
 
 func (s *FilesystemSuite) TestReadlinkWithNonExistentOldname(c *C) {
