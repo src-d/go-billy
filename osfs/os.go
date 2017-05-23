@@ -168,25 +168,24 @@ func (fs *OS) RemoveAll(path string) error {
 	return os.RemoveAll(fullpath)
 }
 
-// Symlink creates newname as a symbolic link to oldname.
-// All parent directories are created.
-func (fs *OS) Symlink(oldname, newname string) error {
-	if filepath.IsAbs(oldname) {
-		// only rewrite oldname if it's already absolute
-		oldname = fs.Join(fs.base, oldname)
+// Symlink imlements billy.Symlinker.Symlink.
+func (fs *OS) Symlink(target, link string) error {
+	if filepath.IsAbs(target) {
+		// only rewrite target if it's already absolute
+		target = fs.Join(fs.base, target)
 	}
-	newname = fs.Join(fs.base, newname)
+	link = fs.Join(fs.base, link)
 
-	if err := fs.createDir(newname); err != nil {
+	if err := fs.createDir(link); err != nil {
 		return err
 	}
 
-	return os.Symlink(oldname, newname)
+	return os.Symlink(target, link)
 }
 
-// Readlink returns the destination of the named symbolic link.
-func (fs *OS) Readlink(name string) (string, error) {
-	fullpath := fs.Join(fs.base, name)
+// Readlink implements billy.Symlinker.Readlink.
+func (fs *OS) Readlink(link string) (string, error) {
+	fullpath := fs.Join(fs.base, link)
 	target, err := os.Readlink(fullpath)
 	if err != nil {
 		return "", err

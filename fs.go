@@ -45,8 +45,15 @@ type Filesystem interface {
 // Symlinker is a Filesystem with support for creating symlinks.
 type Symlinker interface {
 	Filesystem
-	Symlink(oldname, newname string) error
-	Readlink(name string) (string, error)
+
+	// Symlink creates a symbolic-link from link to target. target may be an
+	// absolute or relative path, and need not refer to an existing node.
+	// Parent directories of link are created as necessary.
+	Symlink(target, link string) error
+
+	// Readlink returns the target path of link. An error is returned if link is
+	// not a symbolic-link.
+	Readlink(link string) (string, error)
 }
 
 // File implements io.Closer, io.Reader, io.Seeker, and io.Writer>

@@ -119,30 +119,29 @@ func (s *subdirFs) Base() string {
 	return s.base
 }
 
-// Symlink creates newname as a symbolic link to oldname.
-// All parent directories are created.
-func (s *subdirFs) Symlink(oldname, newname string) error {
+// Symlink implements billy.Symlinker.Symlink.
+func (s *subdirFs) Symlink(target, link string) error {
 	fs, ok := s.underlying.(billy.Symlinker)
 	if !ok {
 		return ErrSymlinkNotSupported
 	}
 
-	if filepath.IsAbs(oldname) {
-		// only rewrite oldname if it's already absolute
-		oldname = string(os.PathSeparator) + s.underlyingPath(oldname)
+	if filepath.IsAbs(target) {
+		// only rewrite target if it's already absolute
+		target = string(os.PathSeparator) + s.underlyingPath(target)
 	}
-	newname = s.underlyingPath(newname)
-	return fs.Symlink(oldname, newname)
+	link = s.underlyingPath(link)
+	return fs.Symlink(target, link)
 }
 
-// Readlink returns the destination of the named symbolic link.
-func (s *subdirFs) Readlink(name string) (string, error) {
+// Readlink implements billy.Symlinker.Readlink.
+func (s *subdirFs) Readlink(link string) (string, error) {
 	fs, ok := s.underlying.(billy.Symlinker)
 	if !ok {
 		return "", ErrSymlinkNotSupported
 	}
 
-	fullpath := s.underlyingPath(name)
+	fullpath := s.underlyingPath(link)
 	target, err := fs.Readlink(fullpath)
 	if err != nil {
 		return "", err
