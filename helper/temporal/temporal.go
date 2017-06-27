@@ -1,6 +1,8 @@
 package temporal
 
 import (
+	"path/filepath"
+
 	"gopkg.in/src-d/go-billy.v3"
 	"gopkg.in/src-d/go-billy.v3/util"
 )
@@ -22,8 +24,8 @@ func New(fs billy.Filesystem, defaultDir string) billy.Filesystem {
 }
 
 func (h *Temporal) TempFile(dir, prefix string) (billy.File, error) {
-	if dir == "" {
-		dir = h.defaultDir
+	if !filepath.IsAbs(dir) {
+		dir = h.Join(h.defaultDir, dir)
 	}
 
 	return util.TempFile(h.Filesystem, dir, prefix)
