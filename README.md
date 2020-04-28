@@ -1,3 +1,5 @@
+## WE CONTINUE THE DEVELOPMENT AT [go-git/go-billy](https://github.com/go-git/go-billy). This repository is abandoned, and no further updates will be done on the code base, nor issue/prs will be answered or attended.
+
 # go-billy [![GoDoc](https://godoc.org/gopkg.in/src-d/go-billy.v4?status.svg)](https://godoc.org/gopkg.in/src-d/go-billy.v4) [![Build Status](https://travis-ci.com/src-d/go-billy.svg)](https://travis-ci.com/src-d/go-billy) [![Build status](https://ci.appveyor.com/api/projects/status/vx2qn6vlakbi724t?svg=true)](https://ci.appveyor.com/project/mcuadros/go-billy) [![codecov](https://codecov.io/gh/src-d/go-billy/branch/master/graph/badge.svg)](https://codecov.io/gh/src-d/go-billy)
 
 The missing interface filesystem abstraction for Go.
