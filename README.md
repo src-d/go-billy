@@ -27,7 +27,7 @@ billy's filesystem implementation.
 func LoadToMemory(origin billy.Filesystem, path string) (*memory.Memory, error) {
 	memory := memory.New()
 
-	files, err := origin.ReadDir("/")
+	files, err := origin.ReadDir(path)
 	if err != nil {
 		return nil, err
 	}
